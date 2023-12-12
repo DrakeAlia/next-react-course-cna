@@ -1,7 +1,7 @@
 import Link from "next/link";
 import postgres from "postgres";
 
-const sql = postgres(process.env.DATABASE_URL!);
+const sql = postgres(process.env.POSTGRES_URL!);
 
 type Quiz = {
   quiz_id: number;
