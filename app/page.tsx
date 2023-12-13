@@ -8,10 +8,12 @@ type Quiz = {
   title: string;
 };
 
+
 async function Quizzes() {
   const quizzes: Quiz[] = await sql`
   SELECT * FROM quizzes
   `;
+  console.log(quizzes);
 
   return (
     <ul>
