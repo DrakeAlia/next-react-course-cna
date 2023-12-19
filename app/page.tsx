@@ -9,7 +9,7 @@ type Quiz = {
 };
 
 async function Quizzes() {
-  const quizzes: Quiz[] = await sql`
+  let quizzes: Quiz[] = await sql`
   SELECT * FROM quizzes
   `;
   // console.log(quizzes);
