@@ -8,17 +8,16 @@ type Quiz = {
   title: string;
 };
 
-
 async function Quizzes() {
   const quizzes: Quiz[] = await sql`
   SELECT * FROM quizzes
   `;
-  console.log(quizzes);
+  // console.log(quizzes);
 
   return (
     <ul>
       {quizzes.map((quiz) => (
-        <li key={quiz.quiz_id}>
+        <li key={quiz.quiz_id} className="underline">
           <Link href={`/quiz/${quiz.quiz_id}`}>{quiz.title}</Link>
         </li>
       ))}
@@ -29,7 +28,7 @@ async function Quizzes() {
 export default function Home() {
   return (
     <section>
-      <h1>All Quizzes</h1>
+      <h1 className="font-2xl font-semibold">All Quizzes</h1>
       <Quizzes />
     </section>
   );
