@@ -17,7 +17,7 @@ async function Quiz({
     q.description AS quiz_description,
     q.question_text AS quiz_question,
     a.answer_id,
-    a.answer_text
+    a.answer_text,
     a.is_correct
   FROM quizzes AS q
   JOIN answers AS a ON q.quiz_id = a.quiz_id
@@ -56,10 +56,11 @@ export default function QuizPage({
       <form
         action={async () => {
           "use server";
-          redirect(`/quiz/${params.id}/show=true`);
+          redirect(`/quiz/${params.id}?show=true`);
         }}
       >
-        <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 transition-all">
+        <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 
+        transition-all">
           Show Answer
         </button>
       </form>

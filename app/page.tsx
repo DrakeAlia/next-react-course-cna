@@ -1,5 +1,6 @@
 import Link from "next/link";
 import postgres from "postgres";
+import QuizForm from "./quiz-form";
 
 const sql = postgres(process.env.POSTGRES_URL!);
 
@@ -9,7 +10,7 @@ type Quiz = {
 };
 
 async function Quizzes() {
-  let quizzes: Quiz[] = await sql`
+  const quizzes: Quiz[] = await sql`
   SELECT * FROM quizzes
   `;
   // console.log(quizzes);
@@ -28,8 +29,9 @@ async function Quizzes() {
 export default function Home() {
   return (
     <section>
-      <h1 className="font-2xl font-semibold">All Quizzes</h1>
+      <h1 className="text-2xl font-semibold">All Quizzes</h1>
       <Quizzes />
+      <QuizForm />
     </section>
   );
 }
