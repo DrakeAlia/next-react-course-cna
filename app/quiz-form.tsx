@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!);
@@ -29,7 +30,7 @@ export default function QuizForm() {
       };
     });
 
-    console.log({ title, description, question, answers });
+    // console.log({ title, description, question, answers });
 
     await sql`
         WITH new_quiz AS (
@@ -47,6 +48,8 @@ export default function QuizForm() {
             ( (SELECT quiz_id FROM new_quiz), ${answers[2].answer}, 
             ${answers[2].isCorrect})
     `;
+
+    revalidatePath("/");
   }
 
   return (
