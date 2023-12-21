@@ -6,9 +6,9 @@ const sql = postgres(process.env.POSTGRES_URL!);
 function Answer({ id }: { id: number }) {
   return (
     <label>
-      Answer {id}
+      Answer {id}:
       <input
-        className="bg-gray-50 border border-gray-200 rounded p-1"
+        className="bg-gray-500 border-2 border-gray-50 hover:bg-blue-400 p-1 rounded w-full"
         type="text"
         name={`answer-${id}`}
       />
@@ -53,12 +53,12 @@ export default function QuizForm() {
   }
 
   return (
-    <form className="flex flex-col mt-8 max-w-xs" action={createQuiz}>
-      <h3 className="text-lg font-semibold">Create Quiz</h3>
-      <label>
+    <form className="flex flex-col p-2 mt-8 max-w-xs" action={createQuiz}>
+      <h3 className="text-lg font-bold text-center">Create Quiz</h3>
+      <label className="mt-2">
         Title:
         <input
-          className="bg-gray-50 border border-gray-200 rounded p-1"
+          className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-400 rounded p-1 mt-2 w-full"
           type="text"
           name="title"
         />
@@ -66,7 +66,7 @@ export default function QuizForm() {
       <label>
         Description:
         <input
-          className="bg-gray-50 border border-gray-200 rounded p12"
+          className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-400 rounded p-1 mt-2 w-full"
           type="text"
           name="description"
         />
@@ -74,7 +74,7 @@ export default function QuizForm() {
       <label>
         Question:
         <input
-          className="bg-gray-50 border border-gray-200 rounded p12"
+          className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-400 rounded p-1 mt-2 w-full"
           type="text"
           name="question"
         />
@@ -85,8 +85,7 @@ export default function QuizForm() {
       <Answer id={3} />
       <button
         type="submit"
-        className="bg-gray-50 p-2 m-2 rounded hover:bg-gray-200 
-        transition-all"
+        className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-700 rounded p-2 mt-4 w-full transition-all"
       >
         Create Quiz
       </button>

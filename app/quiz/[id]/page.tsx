@@ -25,16 +25,18 @@ async function Quiz({
   `;
 
   return (
-    <div>
-      <h1 className="text-2xl">{answers[0].quiz_title}</h1>
-      <p className="text-2xl text-gray-700">{answers[0].quiz_description}</p>
-      <p className="text-xl my-4">{answers[0].quiz_question}</p>
+    <div className="flex flex-col text-center items-center mt-3">
+      <h1 className="text-4xl font-bold p-4">{answers[0].quiz_title}</h1>
+      <p className="text-2xl text-indigo-500 mb-4">
+        {answers[0].quiz_description}
+      </p>
+      <p className="text-xl font-semibold mb-8">{answers[0].quiz_question}</p>
       <ul>
         {answers.map((answer) => (
           <li key={answer.answer_id}>
-            <p>
+            <p className="text-yellow-300 p-2">
               {answer.answer_text}
-              {searchParams.show === "true" && answer.is_correct && "✅"}
+              {searchParams.show === "true" && answer.is_correct && " ✅"}
             </p>
           </li>
         ))}
@@ -51,7 +53,7 @@ export default function QuizPage({
   searchParams: { show?: string };
 }) {
   return (
-    <section>
+    <section className="flex flex-col items-center">
       <Quiz id={params.id} searchParams={searchParams} />
       <form
         action={async () => {
@@ -59,8 +61,7 @@ export default function QuizPage({
           redirect(`/quiz/${params.id}?show=true`);
         }}
       >
-        <button className="bg-gray-200 p-2 m-2 rounded hover:bg-gray-300 
-        transition-all">
+        <button className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-700 rounded p-2 mt-8 transition-all">
           Show Answer
         </button>
       </form>

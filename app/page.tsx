@@ -28,8 +28,8 @@ async function Quizzes() {
 
 export default function Home() {
   return (
-    <section>
-      <h1 className="text-2xl font-semibold">All Quizzes</h1>
+    <section className="flex flex-col items-center text-center mt-2 py-5 mx-auto">
+      <h1 className="text-2xl font-bold p-2 mb-4">All Quizzes</h1>
       <Quizzes />
       <QuizForm />
     </section>
