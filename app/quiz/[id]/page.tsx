@@ -10,6 +10,8 @@ async function Quiz({
   id: string;
   searchParams: { show?: string };
 }) {
+  // Get the quiz from the database
+  // More information in the README.md file
   let answers = await sql`
   SELECT
     q.quiz_id,
@@ -23,7 +25,12 @@ async function Quiz({
   JOIN answers AS a ON q.quiz_id = a.quiz_id
   WHERE q.quiz_id = ${id};
   `;
+  // SELECT is the keyword used to select data from a database.
+  // FROM is the table we are selecting from. In this case, we are selecting from the quizzes table.
+  // JOIN is joining two tables together. In this case, we are joining the quizzes table with the answers table.
+  // WHERE is a condition that we are using to filter the results. In this case, we are filtering the results to only include the quiz with the id that matches the id in the URL.
 
+  // The result of the query is an array of objects. Each object represents a row in the database. The properties of the object are the columns in the database.
   return (
     <div className="flex flex-col text-center items-center mt-12">
       <h1 className="text-4xl text-gray-100 font-bold mb-2">
@@ -70,3 +77,6 @@ export default function QuizPage({
     </section>
   );
 }
+
+// use server will update the url in the browser to the url that is passed in as an argument. In this case, it will update the url to /quiz/1?show=true.
+// this replaces having to create a api endpoint and then redirecting to that endpoint.
