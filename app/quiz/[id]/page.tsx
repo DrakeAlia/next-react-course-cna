@@ -3,6 +3,7 @@ import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!);
 
+// The quiz component takes in two arguments: id and searchParams.
 async function Quiz({
   id,
   searchParams,
@@ -26,11 +27,16 @@ async function Quiz({
   WHERE q.quiz_id = ${id};
   `;
   // SELECT is the keyword used to select data from a database.
+  // AS is used to rename a column. In this case, we are renaming the title column to quiz_title and the description column to quiz_description.
   // FROM is the table we are selecting from. In this case, we are selecting from the quizzes table.
   // JOIN is joining two tables together. In this case, we are joining the quizzes table with the answers table.
+  // ON is the condition that we are using to join the tables. In this case, we are joining the quizzes table with the answers table on the quiz_id column.
   // WHERE is a condition that we are using to filter the results. In this case, we are filtering the results to only include the quiz with the id that matches the id in the URL.
 
   // The result of the query is an array of objects. Each object represents a row in the database. The properties of the object are the columns in the database.
+  // answer.answer_text is the answer_text column in the answers table.
+  // answer.is_correct is the is_correct column in the answers table.
+  // searchParams.show is the show query parameter in the URL.
   return (
     <div className="flex flex-col text-center items-center mt-12">
       <h1 className="text-4xl text-gray-100 font-bold mb-2">
@@ -54,6 +60,10 @@ async function Quiz({
   );
 }
 
+// QuizPage is a React component that takes in two arguments: params and searchParams.
+// params is an object that contains the id that is in the URL.
+// searchParams is an object that contains the query parameters in the URL.
+// The return value of QuizPage is the Quiz component. The Quiz component takes in two arguments: id and searchParams.
 export default function QuizPage({
   params,
   searchParams,

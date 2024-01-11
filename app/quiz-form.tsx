@@ -3,6 +3,7 @@ import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!);
 
+// Answer component takes in an id prop and returns a label with an input for the answer and a checkbox for whether the answer is correct.
 function Answer({ id }: { id: number }) {
   return (
     <label>
@@ -16,7 +17,15 @@ function Answer({ id }: { id: number }) {
     </label>
   );
 }
-
+// QuizForm component returns a form that takes in a FormData object as an argument.
+// FormData is a built-in JavaScript object that contains the data from the form.
+// The form has a title, description, question, and three answers.
+// The answers are generated using the Answer component.
+// The form has a submit button that calls the createQuiz function when clicked.
+// createQuiz function takes in a FormData object as an argument.
+// createQuiz function gets the data from the form using the FormData object.
+// createQuiz function inserts the data from the form into the database.
+// createQuiz function redirects the user to the home page.
 export default function QuizForm() {
   async function createQuiz(formData: FormData) {
     "use server";
@@ -31,7 +40,7 @@ export default function QuizForm() {
     });
 
     // console.log({ title, description, question, answers });
-
+    
     await sql`
         WITH new_quiz AS (
             INSERT INTO quizzes (title, description, question_text, 
@@ -48,7 +57,13 @@ export default function QuizForm() {
             ( (SELECT quiz_id FROM new_quiz), ${answers[2].answer}, 
             ${answers[2].isCorrect})
     `;
-
+    // WITH is a keyword used to create a temporary table.
+    // new_quiz is the name of the temporary table.
+    // INSERT INTO is the keyword used to insert data into a table. In this case, we are inserting data into the quizzes table.
+    // title, description, question, and answers are the data we are inserting into the quizzes table.
+    // RETURNING is a keyword used to return the data that was inserted into the table.
+    // quiz_id is the column we are returning.
+    // revalidatePath function is used to revalidate the home page. Meaning, the home page will be regenerated with the new quiz.
     revalidatePath("/");
   }
 
@@ -63,7 +78,7 @@ export default function QuizForm() {
           name="title"
         />
       </label>
-      <label>
+      <label className="mt-2">
         Description:
         <input
           className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-400 rounded p-1 mt-2 w-full"
@@ -71,7 +86,7 @@ export default function QuizForm() {
           name="description"
         />
       </label>
-      <label>
+      <label className="mt-2">
         Question:
         <input
           className="bg-gray-500 border-2 border-gray-200 hover:bg-blue-400 rounded p-1 mt-2 w-full"
