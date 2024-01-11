@@ -90,3 +90,27 @@ export default function QuizPage({
 
 // use server will update the url in the browser to the url that is passed in as an argument. In this case, it will update the url to /quiz/1?show=true.
 // this replaces having to create a api endpoint and then redirecting to that endpoint.
+
+
+
+
+// Hardcoded way of rendering the quiz
+
+// export default function Quiz() {
+//   return (
+//     <div className="flex flex-col text-center items-center mt-12">
+//       <h1 className="text-4xl text-gray-100 font-bold mb-2">Quiz 1</h1>
+//       <p className="text-2xl text-gray-100 mb-8">
+//         This is a quiz about Next.js.
+//       </p>
+//       <p className="text-xl font-semibold mb-8">
+//         What is the name of the Next.js mascot?
+
+
+// export default function QuizPage({ params }: { params: { id: string } }) {
+//   return (
+//     <section>
+//       <h1>Quiz {params.id}</h1>
+//     </section>
+//   );
+// }
